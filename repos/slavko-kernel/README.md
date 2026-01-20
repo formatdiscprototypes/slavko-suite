@@ -1,8 +1,8 @@
-<p align="center">
-  <img src="https://img.shields.io/badge/🧠-SlavkoKernel%20v8-10b981?style=for-the-badge" />
-</p>
+# 🧠 SlavkoKernel v8
 
-<h1 align="center">🧠 SlavkoKernel v8</h1>
+<p align="center">
+  <img src="https://img.shields.io/badge/🧠-SlavkoKernel%20v8-10b981?style=for-the-badge" alt="SlavkoKernel Badge" />
+</p>
 
 <p align="center">
   <strong>Presentation & Governance Layer</strong><br/>
@@ -16,8 +16,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/🇭🇷-Made%20in%20Zagreb-000?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/FormatDisc™-Enterprise-10b981?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/🇭🇷-Made%20in%20Zagreb-000?style=for-the-badge" alt="Made in Zagreb" />
+  <img src="https://img.shields.io/badge/FormatDisc™-Enterprise-10b981?style=for-the-badge" alt="Enterprise Grade" />
 </p>
 
 ---
@@ -47,43 +47,28 @@ curl -X POST http://localhost:11434/api/generate \
 
 ## 🏗️ Architecture
 
-```
-┌─────────────────────────────────────────┐
-│           SLAVKOKERNEL v8               │
-│      Council Governance Layer           │
-└─────────────────────────────────────────┘
-              │
-    ┌─────────┼─────────┐
-    ▼         ▼         ▼
-┌───────┐ ┌───────┐ ┌───────┐
-│Pattern│ │ Risk  │ │ Eval  │
-│ Agent │ │ Agent │ │ Agent │
-└───────┘ └───────┘ └───────┘
-    │         │         │
-    └─────────┼─────────┘
-              ▼
-      ┌─────────────┐
-      │   Think     │
-      │   Agent     │
-      └─────────────┘
-              │
-              ▼
-      ┌─────────────┐
-      │  Council    │
-      │  Decision   │
-      └─────────────┘
+```mermaid
+graph TD
+    A[SLAVKOKERNEL v8] --> B(Pattern Agent)
+    A --> C(Risk Agent)
+    A --> D(Eval Agent)
+    B --> E{Council}
+    C --> E
+    D --> E
+    E --> F[Think Agent]
+    F --> G[Decision]
 ```
 
 ---
 
 ## 📊 Council Governance
 
-| Parameter | Value | Description |
-|-----------|-------|-------------|
-| **Quorum** | 3/4 | Minimum agents required |
-| **Threshold** | 66% | Agreement for approval |
-| **Timeout** | 30s | Max decision time |
-| **Escalation** | Auto | Conflicts → Human review |
+| Parameter      | Value | Description              |
+| :------------- | :---- | :----------------------- |
+| **Quorum**     | 3/4   | Minimum agents required  |
+| **Threshold**  | 66%   | Agreement for approval   |
+| **Timeout**    | 30s   | Max decision time        |
+| **Escalation** | Auto  | Conflicts → Human review |
 
 ---
 

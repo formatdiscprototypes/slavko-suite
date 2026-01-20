@@ -1,8 +1,8 @@
-<p align="center">
-  <img src="https://img.shields.io/badge/🔗-SlavkoFusion%201.0-9333ea?style=for-the-badge" />
-</p>
+# 🔗 SlavkoFusion 1.0
 
-<h1 align="center">🔗 SlavkoFusion 1.0</h1>
+<p align="center">
+  <img src="https://img.shields.io/badge/🔗-SlavkoFusion%201.0-9333ea?style=for-the-badge" alt="SlavkoFusion Badge" />
+</p>
 
 <p align="center">
   <strong>Multimodal Integration Layer</strong><br/>
@@ -16,8 +16,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/🇭🇷-Made%20in%20Zagreb-000?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/👁️-Vision%20Enabled-f59e0b?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/🇭🇷-Made%20in%20Zagreb-000?style=for-the-badge" alt="Made in Zagreb" />
+  <img src="https://img.shields.io/badge/👁️-Vision%20Enabled-f59e0b?style=for-the-badge" alt="Vision Enabled" />
 </p>
 
 ---
@@ -47,13 +47,13 @@ curl -X POST http://localhost:11434/api/generate \
 
 ## 🎨 Supported Modalities
 
-| Modality | Formats | Capabilities |
-|----------|---------|--------------|
-| **Text** | plain, markdown, html | Semantic extraction |
-| **Image** | png, jpeg, webp | OCR, object detection |
-| **Document** | pdf, docx | Layout analysis |
-| **Code** | all languages | AST parsing |
-| **UI Mockup** | Figma, Sketch | Component detection |
+| Modality      | Formats               | Capabilities          |
+| :------------ | :-------------------- | :-------------------- |
+| **Text**      | plain, markdown, html | Semantic extraction   |
+| **Image**     | png, jpeg, webp       | OCR, object detection |
+| **Document**  | pdf, docx             | Layout analysis       |
+| **Code**      | all languages         | AST parsing           |
+| **UI Mockup** | Figma, Sketch         | Component detection   |
 
 ---
 
@@ -90,25 +90,14 @@ curl -X POST http://localhost:11434/api/generate \
 
 ## 🏗️ Architecture
 
-```
-┌─────────────────────────────────────────┐
-│           SLAVKOFUSION 1.0              │
-│      Multimodal Integration Layer       │
-└─────────────────────────────────────────┘
-              │
-    ┌─────────┼─────────┐
-    ▼         ▼         ▼
-┌───────┐ ┌───────┐ ┌───────┐
-│ Text  │ │Vision │ │ Code  │
-│Extract│ │Extract│ │Extract│
-└───────┘ └───────┘ └───────┘
-    │         │         │
-    └─────────┼─────────┘
-              ▼
-      ┌─────────────┐
-      │  Unified    │
-      │  Features   │
-      └─────────────┘
+```mermaid
+graph TD
+    A[SLAVKOFUSION 1.0] --> B(Text Extract)
+    A --> C(Vision Extract)
+    A --> D(Code Extract)
+    B --> E{Unified Features}
+    C --> E
+    D --> E
 ```
 
 ---

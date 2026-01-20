@@ -1,8 +1,8 @@
-<p align="center">
-  <img src="https://img.shields.io/badge/💻-SlavkoShell%202.0-3b82f6?style=for-the-badge" />
-</p>
+# 💻 SlavkoShell 2.0
 
-<h1 align="center">💻 SlavkoShell 2.0</h1>
+<p align="center">
+  <img src="https://img.shields.io/badge/💻-SlavkoShell%202.0-3b82f6?style=for-the-badge" alt="SlavkoShell Badge" />
+</p>
 
 <p align="center">
   <strong>Routing & Security Layer</strong><br/>
@@ -16,8 +16,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/🇭🇷-Made%20in%20Zagreb-000?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/🔒-Zero%20Trust-ef4444?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/🇭🇷-Made%20in%20Zagreb-000?style=for-the-badge" alt="Made in Zagreb" />
+  <img src="https://img.shields.io/badge/🔒-Zero%20Trust-ef4444?style=for-the-badge" alt="Zero Trust" />
 </p>
 
 ---
@@ -46,14 +46,14 @@ curl -X POST http://localhost:11434/api/generate \
 
 ## 🔒 Security Features
 
-| Check | Description |
-|-------|-------------|
-| **Schema Validation** | JSON contract conformance |
-| **Type Checking** | Field type verification |
-| **Size Limits** | Max 100KB input |
+| Check                   | Description                 |
+| :---------------------- | :-------------------------- |
+| **Schema Validation**   | JSON contract conformance   |
+| **Type Checking**       | Field type verification     |
+| **Size Limits**         | Max 100KB input             |
 | **Injection Detection** | SQL, XSS, command injection |
-| **PII Screening** | Personal data detection |
-| **Encoding Validation** | UTF-8 only |
+| **PII Screening**       | Personal data detection     |
+| **Encoding Validation** | UTF-8 only                  |
 
 ---
 
