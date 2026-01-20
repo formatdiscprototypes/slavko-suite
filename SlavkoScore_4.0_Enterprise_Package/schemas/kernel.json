@@ -1,0 +1,140 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SlavkoKernel Output Schema",
+  "description": "Standard output schema for the SlavkoKernel presentation and governance layer",
+  "type": "object",
+  "properties": {
+    "slavko_version": {
+      "type": "string",
+      "description": "SlavkoScore version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "component": {
+      "type": "string",
+      "description": "Component name",
+      "const": "Kernel"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp"
+    },
+    "audit_id": {
+      "type": "string",
+      "description": "Unique audit identifier",
+      "pattern": "^audit-kernel-[a-f0-9]{32}$"
+    },
+    "audit_stage": {
+      "type": "string",
+      "description": "Audit stage",
+      "const": "kernel"
+    },
+    "audit_chain": {
+      "type": "array",
+      "description": "Complete audit chain",
+      "items": {
+        "type": "string",
+        "pattern": "^audit-[a-f0-9]{32}$"
+      },
+      "minItems": 4,
+      "maxItems": 10
+    },
+    "audit_signature": {
+      "type": "string",
+      "description": "Optional cryptographic signature",
+      "contentEncoding": "base64"
+    },
+    "input": {
+      "type": "object",
+      "description": "Original input payload from Score component"
+    },
+    "output": {
+      "type": "object",
+      "description": "Formatted output from Kernel",
+      "properties": {
+        "markdown": {
+          "type": "string",
+          "description": "Human-readable Markdown report"
+        },
+        "verdict": {
+          "type": "string",
+          "enum": ["PASS", "FAIL", "WARN"]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "governance_summary": {
+          "type": "object",
+          "description": "Governance-focused summary",
+          "properties": {
+            "risk_level": {
+              "type": "string",
+              "enum": ["Low", "Medium", "High", "Critical"]
+            },
+            "compliance_status": {
+              "type": "string",
+              "enum": ["Compliant", "Non-Compliant", "Partial"]
+            },
+            "action_required": {
+              "type": "boolean"
+            },
+            "rules_applied": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "score": {
+                    "type": "number"
+                  },
+                  "passed": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": ["markdown", "verdict", "confidence"]
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "deterministic": {
+          "type": "boolean",
+          "description": "Whether output is deterministic"
+        },
+        "pipeline_stage": {
+          "type": "string",
+          "const": "kernel"
+        },
+        "runtime_ms": {
+          "type": "number",
+          "minimum": 0
+        },
+        "template_used": {
+          "type": "string",
+          "description": "Template name used for rendering"
+        }
+      },
+      "required": ["deterministic", "pipeline_stage", "runtime_ms"]
+    }
+  },
+  "required": [
+    "slavko_version",
+    "component",
+    "timestamp",
+    "audit_id",
+    "audit_stage",
+    "audit_chain",
+    "input",
+    "output",
+    "meta"
+  ],
+  "additionalProperties": false
+}

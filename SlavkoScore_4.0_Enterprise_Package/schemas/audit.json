@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KernelBus v2 Audit Block",
+  "description": "Standard audit record structure for all SlavkoScore components",
+  "type": "object",
+  "properties": {
+    "audit_id": {
+      "type": "string",
+      "description": "Unique identifier for this audit record (SHA-256 hash)",
+      "pattern": "^audit-[a-f0-9]{32}$"
+    },
+    "audit_stage": {
+      "type": "string",
+      "description": "Current stage in the pipeline",
+      "enum": ["shell", "fusion", "score", "kernel"]
+    },
+    "audit_chain": {
+      "type": "array",
+      "description": "List of previous audit IDs creating a tamper-evident trail",
+      "items": {
+        "type": "string",
+        "pattern": "^audit-[a-f0-9]{32}$"
+      },
+      "minItems": 0,
+      "maxItems": 10
+    },
+    "audit_signature": {
+      "type": "string",
+      "description": "Optional cryptographic signature (Ed25519)",
+      "contentEncoding": "base64"
+    },
+    "input_hash": {
+      "type": "string",
+      "description": "SHA-256 hash of the input payload",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "output_hash": {
+      "type": "string",
+      "description": "SHA-256 hash of the output payload",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp when the audit record was created"
+    },
+    "latency_ms": {
+      "type": "number",
+      "description": "Processing latency in milliseconds",
+      "minimum": 0
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional audit metadata",
+      "properties": {
+        "model_used": {
+          "type": "string",
+          "description": "Model name if applicable"
+        },
+        "deterministic": {
+          "type": "boolean",
+          "description": "Whether the output was deterministic"
+        },
+        "cache_hit": {
+          "type": "boolean",
+          "description": "Whether the result was served from cache"
+        }
+      }
+    }
+  },
+  "required": ["audit_id", "audit_stage", "audit_chain", "timestamp"],
+  "additionalProperties": false
+}

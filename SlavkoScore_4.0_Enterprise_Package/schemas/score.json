@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SlavkoScore Deterministic Output",
+  "description": "Standard output schema for the SlavkoScore evaluation engine",
+  "type": "object",
+  "properties": {
+    "risk_score": {
+      "type": "integer",
+      "description": "Overall risk score from 0 to 100",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "compliance_pass": {
+      "type": "boolean",
+      "description": "Whether the content passes compliance checks"
+    },
+    "verdict": {
+      "type": "string",
+      "description": "Final verdict based on risk score and thresholds",
+      "enum": ["PASS", "FAIL", "WARN"]
+    },
+    "confidence": {
+      "type": "number",
+      "description": "Confidence level of the evaluation (0.0 to 1.0)",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "rule_breakdown": {
+      "type": "object",
+      "description": "Individual scores from each applied rule",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+      }
+    },
+    "raw_reasoning": {
+      "type": "object",
+      "description": "Raw reasoning output from the evaluation model",
+      "properties": {
+        "intent": {
+          "type": "string",
+          "description": "Detected intent of the content"
+        },
+        "risks": {
+          "type": "string",
+          "description": "Identified risks and their severity"
+        },
+        "compliance": {
+          "type": "string",
+          "description": "Compliance assessment details"
+        },
+        "ux": {
+          "type": "string",
+          "description": "UX assessment if applicable"
+        },
+        "recommendations": {
+          "type": "string",
+          "description": "Actionable recommendations"
+        }
+      },
+      "required": ["intent", "risks", "compliance", "ux", "recommendations"]
+    },
+    "ensemble": {
+      "type": "object",
+      "description": "Ensemble voting results if applicable",
+      "properties": {
+        "models": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Models used in ensemble"
+        },
+        "individual_scores": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "Scores from each model"
+        },
+        "consensus": {
+          "type": "boolean",
+          "description": "Whether consensus was achieved"
+        },
+        "agreement": {
+          "type": "number",
+          "description": "Agreement level between models (0.0 to 1.0)",
+          "minimum": 0.0,
+          "maximum": 1.0
+        }
+      }
+    },
+    "thresholds": {
+      "type": "object",
+      "description": "Thresholds used for evaluation",
+      "properties": {
+        "pass": {
+          "type": "integer",
+          "description": "Pass threshold (risk score below this is PASS)",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "warn": {
+          "type": "integer",
+          "description": "Warn threshold (risk score above this is FAIL)",
+          "minimum": 0,
+          "maximum": 100
+        }
+      },
+      "required": ["pass", "warn"]
+    }
+  },
+  "required": ["risk_score", "compliance_pass", "verdict", "rule_breakdown", "raw_reasoning"],
+  "additionalProperties": false
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "S.L.A.V.K.O.™ Input Payload",
+  "description": "Standard input schema for all SlavkoScore components",
+  "type": "object",
+  "properties": {
+    "text": {
+      "type": "string",
+      "description": "Raw text content to analyze",
+      "maxLength": 100000
+    },
+    "image_base64": {
+      "type": "string",
+      "description": "Base64-encoded image data",
+      "contentEncoding": "base64"
+    },
+    "pdf_base64": {
+      "type": "string",
+      "description": "Base64-encoded PDF document",
+      "contentEncoding": "base64"
+    },
+    "ui_base64": {
+      "type": "string",
+      "description": "Base64-encoded UI mock-up or screenshot",
+      "contentEncoding": "base64"
+    },
+    "code": {
+      "type": "string",
+      "description": "Source code snippet to analyze",
+      "maxLength": 100000
+    },
+    "search_query": {
+      "type": "string",
+      "description": "Search query for web-based analysis",
+      "maxLength": 500
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata for the request",
+      "properties": {
+        "source": {
+          "type": "string",
+          "description": "Source of the input (e.g., 'api', 'web', 'file')"
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"],
+          "description": "Priority level for processing"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "User identifier for audit purposes"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO-8601 timestamp of the request"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Custom tags for categorization"
+        }
+      }
+    }
+  },
+  "required": ["text"],
+  "additionalProperties": false,
+  "anyOf": [
+    {"required": ["text"]},
+    {"required": ["image_base64"]},
+    {"required": ["pdf_base64"]},
+    {"required": ["ui_base64"]},
+    {"required": ["code"]}
+  ]
+}
