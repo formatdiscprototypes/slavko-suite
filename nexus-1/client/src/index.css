@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --nexus-bg: #0a0a0a;
+  --nexus-text: #e0e0e0;
+  --nexus-primary: #00ff88;
+  --nexus-secondary: #00ddff;
+  --nexus-cursor: #00ff88;
+}
+
+body {
+  margin: 0;
+  background-color: var(--nexus-bg);
+  color: var(--nexus-text);
+  font-family: "Courier New", Courier, monospace;
+  overflow: hidden;
+}
+
+/* CRT Scanline Effect */
+.scanlines::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.05;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border: 1px solid var(--nexus-primary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+/* Selection */
+::selection {
+  background: var(--nexus-primary);
+  color: #000;
+}
+
+/* Utilities */
+.text-neon-green {
+  color: var(--nexus-primary);
+}
+.text-neon-blue {
+  color: var(--nexus-secondary);
+}
+.border-neon-green {
+  border-color: var(--nexus-primary);
+}
+.bg-neon-green {
+  background-color: var(--nexus-primary);
+}
+
+.glow-border {
+  box-shadow: 0 0 5px var(--nexus-primary);
+}
+.glow-text {
+  text-shadow: 0 0 5px var(--nexus-primary);
+}
+
+/* Components */
+.nexus-panel {
+  background-color: rgba(10, 10, 10, 0.95);
+  border: 1px solid #333;
+}
+.nexus-panel:hover {
+  border-color: var(--nexus-primary);
+}
+
+.nexus-btn {
+  background: transparent;
+  border: 1px solid var(--nexus-primary);
+  color: var(--nexus-primary);
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: "Courier New", monospace;
+  text-transform: uppercase;
+}
+.nexus-btn:hover:not(:disabled) {
+  background: var(--nexus-primary);
+  color: #000;
+  box-shadow: 0 0 10px var(--nexus-primary);
+}
+.nexus-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: #555;
+  color: #555;
+}
+
+/* Loader */
+.loader {
+  border: 2px solid #333;
+  border-top: 2px solid var(--nexus-primary);
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Typing Cursor */
+.typing-cursor::after {
+  content: "▋";
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+  color: var(--nexus-primary);
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
