@@ -271,7 +271,7 @@ Apache-2.0 — See [LICENSE](LICENSE) for details.
 
 ---
 
-## 🖤 S.L.A.V.K.O.™ Philosophy
+## S.L.A.V.K.O.™ Philosophy
 
 > **Minimalism outside.**  
 > **Orchestration beast inside.**  
@@ -280,7 +280,7 @@ Apache-2.0 — See [LICENSE](LICENSE) for details.
 ---
 
 <p align="center">
-  <strong>⚡ Built with ❤️ by Mladen Gertner & FormatDisc™</strong><br/>
+  <strong>Built by Mladen Gertner & FormatDisc™</strong><br/>
   <em>"In a world of infinite possibilities, FormatDisc™ chooses the path of deterministic excellence."</em>
 </p>
 
